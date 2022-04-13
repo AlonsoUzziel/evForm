@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>evForm</title>
+    <link rel="stylesheet" type="text/css" href="source/styles.css">
+</head>
+<body>
+    <section>
+        <h1>evForm</h1>
+        <form id="myForm">
+            <div>
+                <label>Nombre</label>
+                <input type="text" class="require letters">
+            </div>
+            <div>
+                <label>Apellido</label>
+                <input type="text" class="require">
+            </div>
+            <div>
+                <label>email</label>
+                <input type="text" class="require email" >
+            </div>
+            <div>
+                <label>teléfono</label>
+                <input type="text" class="require phone" >
+            </div>
+            <div>
+                <label>código postal</label>
+                <input type="text" class="require postalCode number">
+            </div>
+            <div>
+                <label>Acepto terminos y condiciones</label>
+                <input type="checkbox" class="requireCheck" >
+            </div>
+            <div>
+                <button id="btnSend">Enviar</button>
+            </div>
+        </form>
+    </section>
+    <script src="source/evForm.js"></script>
+<script>
+
+    evForm.evaluates.push({
+        name: 'phone',
+        msg: 'Ingresa un número telefónico',
+        evaluate: function (input){
+            let value = input.value
+            let pattern=new RegExp(/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/)
+            if (!pattern.test(value)){
+                input.value = value.replace(/[A-Za-z\s]+/g,'')
+                return true
+            }
+            return false
+        }
+    })
+    document.getElementById("btnSend").onclick = function(e){
+        registerValidate('myForm','btnSend')
+            .then(function (){
+                if(evForm.getErrors() === 0)
+                {
+                    document.getElementById("myForm").submit();
+                }
+            })
+            .catch(err => console.log(err))
+        e.preventDefault();
+    }
+</script>
+</body>
+</html>
