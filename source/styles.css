@@ -1,0 +1,37 @@
+body{
+    background-color: #0c3047;
+    font-family: sans-serif;
+}
+section{
+    display: flex;
+    width: 72%;
+    justify-content: center;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+section h1{
+    color: #d7d7d7;
+    text-align: center;
+    width: 99%;
+}
+section form{
+    color: #d7d7d7;
+    font-size: 18px;
+    width: 45%;
+}
+section form div{
+    margin: 9px auto;
+    min-width: 277px;
+    width: 60%;
+}
+.error{
+    color: #c60303;
+    font-size: 12px;
+    float: right;
+}
+input{
+    text-indent: 3px;
+}
+.errorInput{
+    border-color: #c60303;
+}
