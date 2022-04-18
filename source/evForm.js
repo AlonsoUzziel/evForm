@@ -16,7 +16,7 @@ class O { //Observer
     }
 }
 
-class evForm extends O {
+class EvForm extends O {
     constructor() {
         super()
         this.input = null
@@ -54,7 +54,7 @@ class evForm extends O {
             e.evaluate(t) ? this.newMsg(t, e.msg, e.name) : this.rmMsg(t, e.name)
         }
     }
-    gNS = function (e, t) {
+    gNS = function (e, t) { // getNextSibling
         let a = e.nextElementSibling;
         for (; a;) {
             if (a.matches(t)) return a;
@@ -76,7 +76,7 @@ class evForm extends O {
     }
 }
 
-let evForm = new evForm, toValidate;
+let evForm = new EvForm(), toValidate;
 function registerValidate(e, t) {
     return (toValidate = document.querySelectorAll("#" + e + " input")).forEach(e => e.addEventListener("input", e => {
         if (evForm.notify(e.target), 0 === evForm.getErrors()) {
